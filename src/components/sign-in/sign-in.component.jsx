@@ -2,6 +2,7 @@ import React from 'react';
 import FormInput from '../form-input/form-input.component';
 import './sign-in.styles.scss';
 import CustomButton from '../custom-button/custom-button.component';
+import { auth, signInWithGoogle } from '../../core/firebase/firebase.utils';
 
 class SignIn extends React.Component {
 
@@ -14,9 +15,18 @@ class SignIn extends React.Component {
         }
     }
 
-    handleSubmit = event => {
+    handleSubmit = async event => {
         event.preventDefault();
-        this.setState({ email: '', password: '' });
+
+        const { email, password } = this.state;
+
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+            this.setState({ email: '', password: '' });
+        } catch (e) {
+            console.error(e);
+        }
+
     }
 
     handleChange = event => {
@@ -31,9 +41,13 @@ class SignIn extends React.Component {
                 <span>Sign in with your email and password</span>
 
                 <form onSubmit={this.handleSubmit}>
-                    <FormInput handleChange={this.handleChange} name='email' type='email' label='Email' value={this.state.email} required></FormInput>
-                    <FormInput handleChange={this.handleChange} name='password' type='password' label='Password' value={this.state.password} required></FormInput>
-                    <CustomButton type='submit'>Submit form</CustomButton>
+                    <FormInput handleChange={this.handleChange} name='email' type='email' label='Email' value={this.state.email} required />
+                    <FormInput handleChange={this.handleChange} name='password' type='password' label='Password' value={this.state.password} required />
+
+                    <div className="buttons">
+                        <CustomButton type='submit'>Sign in</CustomButton>
+                        <CustomButton type='button' onClick={signInWithGoogle} isGoogleSignIn>Sign in with Google </CustomButton>
+                    </div>
                 </form>
             </div>
         )
