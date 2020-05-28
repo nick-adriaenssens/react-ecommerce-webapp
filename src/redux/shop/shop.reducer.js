@@ -6,11 +6,6 @@ const INITIAL_STATE = {
 
 const shopReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        // case DirectoryActionTypes.TOGGLE_CART_HIDDEN:
-        //     return {
-        //         ...state,
-        //
-        //     }
         default:
             return state;
     }
