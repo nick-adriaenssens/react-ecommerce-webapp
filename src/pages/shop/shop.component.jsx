@@ -10,4 +10,4 @@ const ShopPage = ({ match }) => (
     </div>
 );
 
-export default ShopPage;
+export default connect()(ShopPage);
