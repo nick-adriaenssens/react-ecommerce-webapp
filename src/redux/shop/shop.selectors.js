@@ -16,3 +16,8 @@ export const selectCollectionsForPreview = createSelector(
     [selectCollections],
     (collections) => Object.values(collections)
 );
+
+export const selectIsCollectionsLoaded = createSelector(
+    [selectCollections],
+    (collections) => Object.keys(collections).length !== 0
+);
