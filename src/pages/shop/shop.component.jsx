@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions';
 import CollectionsOverviewContainer from '../../components/collections-overview/collections-overview.container';
 import { CollectionContainer } from '../collection/collection.container';
+import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 
 class ShopPage extends React.Component {
 
     componentDidMount() {
-        this.props.dispatch(fetchCollectionsStartAsync());
+        this.props.dispatch(fetchCollectionsStart());
     }
 
     render() {
